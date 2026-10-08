@@ -6,6 +6,6 @@ export class AppService {
     return 'Hello World! said Dum';
   }
   getCreator(): string {
-    return 'Dum created this';
+    return 'Dum Dum created this';
   }
 }
