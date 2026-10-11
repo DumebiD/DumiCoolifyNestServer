@@ -10,8 +10,9 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get("/creator")
+  @Get("creator")
   getCreator(): string {
     return this.appService.getCreator();
   }
+
 }

@@ -122,3 +122,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+## Getting Started
+In dev mode, run `docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build -V`
+Run `docker compose exec redis redis-cli -a <redis_password> --no-auth-warning --scan` to see what is in the cache (items in the cache last for 5 mins)
