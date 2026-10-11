@@ -1,4 +1,4 @@
-import { Injectable, Inject, NotFoundException } from "@nestjs/common";
+import { Injectable, Inject, NotFoundException, ConflictException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "./user.entity.js";
@@ -12,6 +12,17 @@ export class UsersService {
         @InjectRepository(User) private readonly repo: Repository<User>,
         private readonly queue: QueueService
     ) { }
+
+    async saveUser(name: string, email: string) {
+        try {
+            return await this.repo.save(this.repo.create({ name, email }));
+        } catch (err:any) {
+            if (err?.code === '23505') {
+                throw new ConflictException('Email already in use');
+            }
+            throw err;
+        }
+    }
 
     async findByEmail(email: string) {
         const cacheKey = `user:${email}`;
